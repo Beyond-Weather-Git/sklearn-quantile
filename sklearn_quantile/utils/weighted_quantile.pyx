@@ -7,7 +7,7 @@ cimport numpy as np
 import numpy as np
 from numpy.lib.function_base import _quantile_is_valid
 from libc.math cimport isnan
-from libc.stdlib cimport malloc, free
+from libc.stdlib cimport malloc, free, int, qsort
 
 
 cdef extern from "stdlib.h":
@@ -27,7 +27,7 @@ cdef int _compare(const_void *a, const_void *b):
     if isnan((<IndexedElement*> b).value): return -1
     v = (<IndexedElement*> a).value-(<IndexedElement*> b).value
     if v < 0: return -1
-    if v >= 0: return 1
+    if v >= 0: return 1 
 
 
 cdef long[:] argsort(float[:] data) nogil:
