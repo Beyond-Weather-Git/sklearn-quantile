@@ -17,7 +17,7 @@ cdef extern from "stdlib.h":
 
 
 cdef struct IndexedElement:
-    np.ulong_t index
+    int index
     np.float32_t value
 
 
@@ -32,8 +32,8 @@ cdef int _compare(const_void *a, const_void *b):
 
 cdef long[:] argsort(float[:] data) nogil:
     """source: https://github.com/jcrudy/cython-argsort/blob/master/cyargsort/argsort.pyx"""
-    cdef np.ulong_t i
-    cdef np.ulong_t n = data.shape[0]
+    cdef int i
+    cdef int n = data.shape[0]
     cdef long[:] order
 
     with gil:
